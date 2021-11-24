@@ -1,0 +1,83 @@
+[tool.commitizen]
+version = "0.0.1"
+tag_format = "v$version"
+version_files = [
+  "pyproject.toml:version",
+  "docker_registry_cli/__version__.py"
+]
+
+[tool.black]
+line-length = 88
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  # The following are specific to Black, you probably don't want those.
+  | blib2to3
+  | tests/data
+  | profiling
+)/
+'''
+
+[tool.poetry]
+name = "docker-registry-cli"
+version = "0.0.1"
+description = "Image remover for private docker registry"
+authors = ["Chai-Shi Chang <changchaishi@gmail.com>"]
+license = "MIT"
+keywords = ["docker", "registry", "image", "remove"]
+readme = "docs/README.md"
+
+[tool.poetry.dependencies]
+python = "^3.6.1"
+questionary = "^1.4.0"
+decli = "^0.5.2"
+colorama = "^0.4.1"
+termcolor = "^1.1"
+packaging = ">=19,<21"
+tomlkit = ">=0.5.3,<1.0.0"
+jinja2 = ">=2.10.3"
+pyyaml = ">=3.08"
+argcomplete = "^1.12.1"
+loguru = "^0.5.3"
+pydantic = "^1.8.2"
+python-dotenv = "^0.19.2"
+
+[tool.poetry.dev-dependencies]
+ipython = "^7.2"
+black = "^19.3b0"
+pytest = "^5.0"
+flake8 = "^3.6"
+pytest-cov = "^2.6"
+pytest-mock = "^2.0"
+codecov = "^2.0"
+mypy = "0.910"
+mkdocs = "^1.0"
+mkdocs-material = "^4.1"
+isort = "^5.7.0"
+freezegun = "^0.3.15"
+pydocstyle = "^5.0.2"
+pre-commit = "^2.6.0"
+pytest-regressions = "^2.2.0"
+pytest-freezegun = "^0.4.2"
+types-PyYAML = "^5.4.3"
+types-termcolor = "^0.1.1"
+
+[tool.poetry.scripts]
+docker-registry-cli = "docker_registry_cli.cli:main"
+
+[tool.isort]
+profile = "black"
+known_first_party = ["docker_registry_cli", "tests"]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
