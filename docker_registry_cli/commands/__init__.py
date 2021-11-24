@@ -1,3 +1,4 @@
-from .custom_print import Print
+from .ls import ListRepo
+from .remove import Remove
 
-__all__ = ("Print",)
+__all__ = ("ListRepo", "Remove")

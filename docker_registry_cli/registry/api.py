@@ -8,8 +8,12 @@ from docker_registry_cli.config import Config
 
 def request(method: str, path: str, headers: dict = None):
     try:
-        response = requests.request(method, f"{Config.REGISTRY_URL}/v2/{path}", headers=headers, auth=(Config.USERNAME, Config.PASSWORD))
-        logger.debug(f"{method} {path} -> {response.status_code}")
+        response = requests.request(
+            method,
+            f"{Config.REGISTRY_URL}/v2/{path}",
+            headers=headers,
+            auth=(Config.USERNAME, Config.PASSWORD),
+        )
         return response
     except requests.exceptions.Timeout as error:
         logger.warning(f"UNAVAILABLE: Connection Timeout {error}")
