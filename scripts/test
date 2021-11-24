@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+export PREFIX="poetry run python -m "
+if [ -d 'venv' ] ; then
+    export PREFIX="venv/bin/"
+fi
+
+# ${PREFIX}pytest --cov-report term-missing --cov-report=xml:coverage.xml --cov=docker_registry_cli tests/
+${PREFIX}black docker_registry_cli  --check
+${PREFIX}isort --check-only docker_registry_cli
+${PREFIX}flake8 docker_registry_cli/
+${PREFIX}mypy docker_registry_cli/
+${PREFIX}pydocstyle --convention=google --add-ignore=D1,D415
